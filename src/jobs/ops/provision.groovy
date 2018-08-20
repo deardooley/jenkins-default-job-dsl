@@ -36,6 +36,12 @@ job(basePath + '/openstack/os_provision_ci') {
     }
 }
 
+folder(basePath + '/terraform') {
+    displayName('Terraform')
+    description('Terraform based provisioning.')
+}
+
+
 job(basePath + '/terraform/tf_apply_training_swarm') {
     description("Deploy a new training swarm on OpenStack")
     keepDependencies(false)
