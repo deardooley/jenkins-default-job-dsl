@@ -20,6 +20,30 @@ job(basePath + "/auth/auth_deploy") {
     concurrentBuild(false)
     steps {
         shell("ansible-playbook -i $JENKINS_HOME/agave-deployer/inventory/sandbox.yml $JENKINS_HOME/agave-deployer/deploy/auth_rolling_deploy.plbk")
+
+        ansiblePlaybook("\$JENKINS_HOME/agave-deployer/deploy/auth_rolling_deploy.plbk") {
+            inventoryPath("\$JENKINS_HOME/agave-deployer/inventory/sandbox.yml")
+//            inventoryContent(String content, boolean dynamic = false)
+//            ansibleName(String name)
+//            limit(String limit)
+//            tags(String tags)
+//            skippedTags(String tags)
+//            startAtTask(String task)
+//            credentialsId(String id)
+//            become(boolean become = true)
+//            becomeUser(String user = 'root')
+//            sudo(boolean sudo = true)
+//            sudoUser(String user = 'root')
+//            forks(int forks = 5)
+//            unbufferedOutput(boolean unbufferedOutput = true)
+//            colorizedOutput(boolean colorizedOutput = false)
+//            hostKeyChecking(false)
+//            additionalParameters(String params)
+//            extraVars {
+//                extraVar(String key, String value, boolean hidden)
+//            }
+        }
+
     }
 }
 
