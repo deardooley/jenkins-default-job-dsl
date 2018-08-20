@@ -7,27 +7,38 @@ folder(basePath) {
     description('Contains jobs to run operational tasks on an existing platform deployment')
 }
 
-folder(basePath + '/openstack') {
-    displayName('OpenStack')
-    description('OpenStack specific provisioning.')
+folder(basePath + '/auth') {
+    displayName('Auth Stack')
+    description('Operational tasks specific to the Auth component stack.')
 }
 
-job(basePath + '/openstack/os_provision') {
-    description("Provisions 4 VM on an OpenStack cloud and runs the basic configuration playbooks needed for all Agave platform servers.")
+
+job(basePath + "/auth/auth_deploy") {
+    description("Performs a rolling deployment on the Auth component host by rotating the active containers in an A/B deployment.")
     keepDependencies(false)
     disabled(false)
     concurrentBuild(false)
     steps {
-        shell("ansible-playbook -i $JENKINS_HOME/agave-deployer/inventory/sandbox.yml -l localhost $JENKINS_HOME/agave-deployer/deploy/os_provision.plbk")
+        shell("ansible-playbook -i $JENKINS_HOME/agave-deployer/inventory/sandbox.yml $JENKINS_HOME/agave-deployer/deploy/auth_rolling_deploy.plbk")
     }
 }
 
-job(basePath + '/openstack/os_provision_ci') {
-    description("Creates a new VM on an OpenStack cloud and runs the basic configuration playbooks needed for all CI servers.")
+job(basePath + "/auth/auth_update") {
+    description("Updates the tenant config on an Auth component host then performs a rolling deployment. No data migration is performed during this operation.")
     keepDependencies(false)
     disabled(false)
     concurrentBuild(false)
     steps {
-        shell("ansible-playbook -i $JENKINS_HOME/agave-deployer/inventory/sandbox.yml -l localhost $JENKINS_HOME/agave-deployer/deploy/os_provision_ci.plbk")
+        shell("ansible-playbook -i $JENKINS_HOME/agave-deployer/inventory/sandbox.yml $JENKINS_HOME/agave-deployer/deploy/update_tenantplbk")
+    }
+}
+
+job(basePath + "/auth/auth_update") {
+    description("Updates the tenant config on an Auth component host then performs a rolling deployment. No data migration is performed during this operation.")
+    keepDependencies(false)
+    disabled(false)
+    concurrentBuild(false)
+    steps {
+        shell("ansible-playbook -i $JENKINS_HOME/agave-deployer/inventory/sandbox.yml $JENKINS_HOME/agave-deployer/deploy/update_tenantplbk")
     }
 }
