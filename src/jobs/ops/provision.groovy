@@ -36,20 +36,20 @@ job(basePath + '/openstack/os_provision_ci') {
     }
 }
 
-job(basePath + '/terraform/tf_apply__training_swarm') {
+job(basePath + '/terraform/tf_apply_training_swarm') {
     description("Deploy a new training swarm on OpenStack")
     keepDependencies(false)
     disabled(false)
     concurrentBuild(false)
-    properties {
-        branch('master')
+    parameters {
+        stringParam('BRANCH', 'master')
     }
     scm {
         git {
             remote {
                 github("git@github.com:agaveplatform/terraform-training-swarm.git", "ssh")
             }
-            branch("*/" + branch)
+            branch("*/master")
         }
     }
     triggers {
