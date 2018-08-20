@@ -28,6 +28,7 @@ configurations.all*.exclude group: 'xalan'
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.11'
     compile "org.jenkins-ci.plugins:job-dsl-core:${jobDslVersion}"
+    compile "org.jenkins-ci.plugins:ansible:${ansibleJobVersion}"
     compile 'org.kohsuke:github-api:1.93'
 
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
@@ -50,10 +51,12 @@ dependencies {
     testCompile 'org.jenkins-ci.plugins:credentials:2.1.10@jar'
     testCompile 'com.coravy.hudson.plugins.github:github:1.29.0@jar'
 
+
     // plugins to install in test instance
     testPlugins 'org.jenkins-ci.plugins:ghprb:1.40.0'
     testPlugins 'org.jenkins-ci.plugins:cloudbees-folder:5.12'
     testPlugins 'org.jenkins-ci.plugins:credentials:2.1.10'
+    testPlugins "org.jenkins-ci.plugins:ansible:${ansibleJobVersion}"
 
     // plugins used for auto-generated DSL. See example 9.
     testPlugins 'org.jenkins-ci.plugins:cvs:2.13'
