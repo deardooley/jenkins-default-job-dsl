@@ -67,15 +67,15 @@ job(basePath + '/terraform/tf_plan_training_swarm') {
     keepDependencies(false)
     disabled(false)
     concurrentBuild(false)
-    properties {
-        branch('master')
+    parameters {
+        stringParam('BRANCH', 'master')
     }
     scm {
         git {
             remote {
                 github("git@github.com:agaveplatform/terraform-training-swarm.git", "ssh")
             }
-            branch("*/" + branch)
+            branch("*/master")
         }
     }
     triggers {
@@ -93,15 +93,15 @@ job(basePath + '/terraform/tf_destroy_training_swarm') {
     keepDependencies(false)
     disabled(false)
     concurrentBuild(false)
-    properties {
-        branch('master')
+    parameters {
+        stringParam('BRANCH', 'master')
     }
     scm {
         git {
             remote {
                 github("git@github.com:agaveplatform/terraform-training-swarm.git", "ssh")
             }
-            branch("*/" + branch)
+            branch("*/master")
         }
     }
     triggers {
