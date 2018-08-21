@@ -87,7 +87,7 @@ job(basePath + '/terraform/tf_apply_training_swarm') {
     scm {
         git {
             remote {
-                github("agaveplatform/terraform-training-swarm", "ssh")
+                github("agaveplatform/terraform-training-swarm")
             }
             branch("*/master")
         }
@@ -113,7 +113,7 @@ job(basePath + '/terraform/tf_plan_training_swarm') {
     scm {
         git {
             remote {
-                github("agaveplatform/terraform-training-swarm", "ssh")
+                github("agaveplatform/terraform-training-swarm")
             }
             branch("*/master")
         }
@@ -134,7 +134,7 @@ job(basePath + '/terraform/tf_destroy_training_swarm') {
     scm {
         git {
             remote {
-                github("agaveplatform/terraform-training-swarm", "ssh")
+                github("agaveplatform/terraform-training-swarm")
             }
             branch("*/master")
         }

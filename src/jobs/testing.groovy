@@ -49,15 +49,15 @@ folder('tests/core') {
 job("tests/core/core-unit-tests") {
     description("This job compiles the science apis, runs the unit tests, and builds the snapshot Docker images.")
     keepDependencies(false)
+    disabled(true)
     scm {
         git {
             remote {
-                github("agaveplatform/science-apis", "ssh")
+                github("agaveplatform/science-apis")
             }
             branch("*/develop")
         }
     }
-    disabled(false)
     triggers {
         scm("H/5 * * * *") {
             ignorePostCommitHooks(false)
