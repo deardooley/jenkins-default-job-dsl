@@ -45,4 +45,18 @@ class GradleCiJobBuilderSpec extends Specification {
             publishers.'hudson.tasks.Mailer'.recipients.text() == 'test1 test2'
         }
     }
+
+    @Override
+    void setProperty(String propertyName, Object newValue) {
+        super.setProperty(propertyName, newValue)
+    }
+
+    void foo() {
+        def instance = jenkins.model.Jenkins.getInstance();
+
+        def config = javaposse.jobdsl.plugin.GlobalJobDslSecurityConfiguration;
+        config.setUseScriptSecurity(false);
+        config.save();
+        instance.getC
+    }
 }

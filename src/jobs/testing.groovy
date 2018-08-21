@@ -52,7 +52,7 @@ job("tests/core/core-unit-tests") {
     scm {
         git {
             remote {
-                github("git@github.com:agaveplatform/science-apis.git", "ssh")
+                github("agaveplatform/science-apis", "ssh")
             }
             branch("*/develop")
         }
