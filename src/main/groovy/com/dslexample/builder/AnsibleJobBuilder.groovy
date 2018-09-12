@@ -5,6 +5,8 @@ import groovy.transform.builder.SimpleStrategy
 import javaposse.jobdsl.dsl.DslFactory
 import javaposse.jobdsl.dsl.Job
 
+
+
 /**
  * Example Class for creating a Gradle build
  */
@@ -40,6 +42,7 @@ class AnsibleJobBuilder {
                 }
             }
             steps {
+
                 ansbilePlaybook(jobPlaybook) {
                     inventoryPath(jobInventoryPath)
                     if (jobLimit) {

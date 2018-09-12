@@ -6,8 +6,13 @@ import javaposse.jobdsl.dsl.DslScriptLoader
 import javaposse.jobdsl.dsl.JobManagement
 import javaposse.jobdsl.dsl.MemoryJobManagement
 import javaposse.jobdsl.dsl.helpers.ScmContext
-import javaposse.jobdsl.dsl.helpers.properties.FolderPropertiesContext
+import javaposse.jobdsl.dsl.helpers.properties.PropertiesContext
+import javaposse.jobdsl.dsl.helpers.step.MultiJobStepContext
+import javaposse.jobdsl.dsl.helpers.step.StepContext
 import javaposse.jobdsl.dsl.helpers.triggers.TriggerContext
+//import org.jenkinsci.plugins.ansible.jobdsl.context.AnsibleContext
+import org.jenkinsci.plugins.ghprb.GhprbGitHub
+import org.jenkinsci.plugins.ghprb.jobdsl.GhprbContextExtensionPoint
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -28,10 +33,13 @@ class JobScriptsSpecAlternative extends Specification {
         outputDir.deleteDir()
     }
 
+
+
     def setup() {
         stubGeneratedDslCall TriggerContext, 'githubPullRequest'
         stubGeneratedDslCall ScmContext, 'cvsscm'
-        stubGeneratedDslCall FolderPropertiesContext, 'folderLibraries'
+        stubGeneratedDslCall StepContext, 'ansiblePlaybook'
+        stubGeneratedDslCall PropertiesContext, 'folderLibraries'
 
         new File('src/scripts').eachFileRecurse(FileType.FILES) {
             String path = it.path.replaceAll('\\\\', '/')
